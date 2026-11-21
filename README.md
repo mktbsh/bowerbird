@@ -1,3 +1,5 @@
+<img src="icon.png" width="128" height="128" alt="Bowerbird icon">
+
 # Bowerbird
 
 A local-first alternative to [Eagle](https://eagle.cool) for macOS: collect images, videos and
