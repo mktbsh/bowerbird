@@ -30,14 +30,32 @@ This repository only publishes the app. The source is kept elsewhere.
 
 ## Install
 
+```sh
+curl -fsSL https://raw.githubusercontent.com/mktbsh/bowerbird/main/install.sh | sh
+```
+
+[`install.sh`](install.sh) downloads the latest release, checks that it is signed with the
+Bowerbird release certificate, puts `Bowerbird.app` in `/Applications` and opens it. Read it
+first if you like; set `BOWERBIRD_INSTALL_DIR=~/Applications` to install elsewhere. Running it
+again installs a newer release if there is one.
+
+Downloaded with curl, the app is not marked as coming from the internet, so Gatekeeper lets it
+open even though it is signed with its own certificate rather than an Apple Developer ID.
+
+<details>
+<summary>Installing the zip by hand</summary>
+
 1. Download the latest `Bowerbird-<version>.zip` from [Releases](../../releases) and unzip it.
 2. Move `Bowerbird.app` to `/Applications`.
-3. The app is signed with its own certificate, not an Apple Developer ID, so Gatekeeper stops the
-   first launch. Clear the download flag once:
+3. A browser marks the download, so Gatekeeper stops the first launch. Either clear the mark once:
 
    ```sh
    xattr -dr com.apple.quarantine /Applications/Bowerbird.app
    ```
+
+   or try to open the app, then choose Open Anyway in System Settings ▸ Privacy & Security.
+
+</details>
 
 After that the app checks this repository's releases and updates itself (Settings ▸ About ▸
 Updates). It only installs builds signed with the same certificate.
