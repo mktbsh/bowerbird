@@ -44,7 +44,7 @@ if [ -d "$target" ]; then
 fi
 
 zip="$app_name-$version.zip"
-echo "Downloading $zip…"
+echo "Downloading ${zip}…"
 curl -fL --progress-bar -o "$work/$zip" "https://github.com/$repo/releases/download/$tag/$zip" \
     || fail "could not download $zip."
 mkdir "$work/unzipped"
