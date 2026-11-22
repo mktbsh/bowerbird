@@ -2,8 +2,10 @@
 
 # Bowerbird
 
-A local-first alternative to [Eagle](https://eagle.cool) for macOS: collect images, videos and
-other references, then sort them with folders, tags and smart folders and find them again by
+English | [日本語](README.ja.md)
+
+A native, local-first alternative to [Eagle](https://eagle.cool) for macOS: collect images, videos
+and other references, then sort them with folders, tags and smart folders and find them again by
 text, colour or the words inside a picture. Libraries live on your own Mac, as plain folders or
 encrypted.
 
@@ -65,5 +67,35 @@ Updates). It only installs builds signed with the same certificate.
 Versions are release dates: `YYYY.M.D`, with `.N` for a later release the same day.
 
 Requires macOS 14 or later on Apple silicon.
+
+## Privacy, security & signing
+
+- **No Apple Developer ID / notarization (yet)**: releases are signed with Bowerbird's own release
+  certificate (`SHA-1: A8CE2558390C191B685C7B926A1DCFFF9FF0C727`). Both [`install.sh`](install.sh)
+  and the built-in updater verify the bundle identifier (`app.bowerbird.macos`) and this exact
+  certificate before installing or updating, and reject anything else. Because Bowerbird was built
+  for personal use and already works well for my own needs, I have not enrolled in the Apple
+  Developer Program. If there is real demand for notarized builds, I am open to signing and
+  notarizing releases with an Apple Developer ID — please open or react to an
+  [issue](../../issues) to let me know.
+- **Don't want to pipe `curl` to `sh`?** You can inspect [`install.sh`](install.sh) before running
+  it, or skip it altogether and install the zip by hand from [Releases](../../releases) using the
+  steps above.
+- **Closed source**: the source repository is private; this repository only distributes the
+  released app and installer.
+- **Network & telemetry**: Bowerbird has no accounts, no analytics, and no telemetry. It only
+  connects to the network when:
+  - checking for or downloading updates from this repository's GitHub Releases,
+  - fetching a web page you explicitly save as a bookmark (saved pages have scripts and external
+    references stripped), or
+  - syncing with Google Drive (`drive.file` scope) if you choose to connect it.
+- **Local HTTP API**: binds to `127.0.0.1` only, requires bearer tokens (with separate read-only
+  and read-write tokens), and only returns CORS headers to browser extensions.
+- **Encryption**: encrypted libraries protect files and metadata locally with AES-GCM and a
+  32-byte master key backed by a 24-word BIP39 recovery phrase.
+
+## Feedback
+
+Bug reports, questions, and feature requests are welcome in [Issues](../../issues).
 
 Bowerbird is not affiliated with Eagle.
